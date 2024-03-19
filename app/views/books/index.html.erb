@@ -3,14 +3,18 @@
 <% @books.each do |book| %>
 
   <p>Title</p>
-  <span>
-    <%= link_to book.title, book_path(book.id) %>
-  </span>
+  <span><%= book.title %></span>
+
+  <p>Body</p>
+  <span><%= book.body %></span>
+
+　<%= link_to "Show", book_path(book.id) %>
+
+　<%= link_to "Edit", edit_book_path(book.id) %>
+
+　<%= link_to "Destroy", books_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
 
 <% end %>
-
-
-
 
 
 
@@ -27,10 +31,10 @@
 
 <%= form_with model: @book, url: books_path, method: :post do |f| %>
 
-  <h6>Title</h6>
+  <h5>Title</h5>
   <%= f.text_field :title %>
 
-  <h6>Body</h6>
+  <h5>Body</h5>
   <%= f.text_area :body %>
 
   <%= f.submit 'Create Book' %>
